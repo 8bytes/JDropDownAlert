@@ -197,7 +197,7 @@ public class JDropDownAlert: UIButton {
     
     public func hide(alertView: UIButton) {
         
-        UIView.animateWithDuration(duration) {
+        UIView.animateWithDuration(duration, animations: {
             
             switch self.direction {
             case .ToRight:
@@ -207,9 +207,10 @@ public class JDropDownAlert: UIButton {
             case .Normal:
                 (self.position == .Top) ? (alertView.frame.origin.y = -self.height) : (alertView.frame.origin.y = self.screenHeight)
             }
+        }) { (done) in
+            self.performSelector(#selector(self.remove), withObject: alertView, afterDelay: 0)
         }
         
-        performSelector(#selector(remove), withObject: alertView, afterDelay: delay)
     }
     
     
