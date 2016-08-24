@@ -190,10 +190,12 @@ public class JDropDownAlert: UIButton {
                 self.position == .Top ? (self.frame.origin.y = 0) : (self.frame.origin.y = self.screenHeight-self.height)
             }
         }
-        performSelector(#selector(hide), withObject: self, afterDelay: self.delay)
+        if delay != 0{
+            performSelector(#selector(hide), withObject: self, afterDelay: self.delay)
+        }
     }
     
-    @objc private func hide(alertView: UIButton) {
+    public func hide(alertView: UIButton) {
         
         UIView.animateWithDuration(duration) {
             
